@@ -1,3 +1,4 @@
+HOTFIX
 1.  Download necessary files
 composer install/update
 
