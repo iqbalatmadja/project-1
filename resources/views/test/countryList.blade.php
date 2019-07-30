@@ -9,9 +9,7 @@
                 <div class="card-body">
 					COUNTRY<br/>
 					
-                    <input type="text" id="fname" name="fname" placeholder="First Name"/><br/>
-                    <input id="startdt" name="startdt" class="_datetime_"  placeholder="Start"><br/>
-                    <input id="enddt" name="enddt" class="_datetime_"  placeholder="End"><br/>
+                    <input type="text" id="filter1" name="filter1" placeholder="Filter 1"/><br/>
                     <a href="#" onclick="return false;" id="filter">FILTER</a>
                     <table id="example" class="display" style="width:100%">
                         <thead>
@@ -81,6 +79,106 @@ $('body').on('hidden.bs.modal', '.modal', function (event) {
 <script src="{{ asset('libs/DataTables/KeyTable-2.4.0/js/dataTables.keyTable.min.js') }}" ></script>
 
 <script>
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+$(document).ready(function(){
+	var dttable = $("#example").DataTable({
+		"keys":true,
+        "processing": true,
+        "colReorder": true,
+        "searching": true,
+        "ajax": {
+            "url":"{{ route('populateCountry') }}",
+            "type":"POST",
+            "data":function(data){
+                var filter1 = $("#filter1").val();
+                data.filter1 = filter1;
+                data._token = CSRF_TOKEN;
+            }
+        },
+        "deferRender": true,
+        "columns":[
+            {
+                "className":"details-control",
+                "orderable": false,
+                "data": null,
+                "defaultContent": "<a href=\"#\" class=\"showInfo\">a</a>"+
+                "&nbsp;<a href=\"#\" class=\"showModal\">b</a>"+
+                ""
+            },
+            { "data":"id" },
+            { "data":"countryCode" },
+            { "data":"countryName" },
+            { "data":"countryName" },
+        ],
+        "order": [[1, "desc"]],
+        
+        
+	})
 
+	function format ( d ) {
+        // d is the original data object for the row
+        return "<table cellpadding=\"5\" cellspacing=\"0\" border=\"0\" style=\"padding-left:50px;\">"+
+            "<tr>"+
+                "<td>Full name:</td>"+
+                "<td>"+d.countryName+"</td>"+
+            "</tr>"+
+            "<tr>"+
+                "<td>Extra info:</td>"+
+                "<td>And any further details here (images etc)...</td>"+
+            "</tr>"+
+        "</table>";
+    }
+
+	$("#example tbody").on( "click", "tr td.details-control .showInfo", function () {
+        var tr = $(this).closest("tr");
+        var row = dttable.row( tr );
+        //alert(row.data().id);
+        
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass("shown");
+            return false;
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass("shown");
+            return false;
+        }
+    })
+
+    $("#reload").click(function(){
+        dttable.ajax.reload(null, false );
+        return false;
+        // if no parameters given (.reload()), it will reload back with default 
+        // params and to the first page
+        // .reload(null,false) 
+        // ==> null can be a function to execute after reload (try with alert())
+        // ==> false means reload current page(not going back to first page)
+    })
+
+    $("#example tbody").on( "click", "tr td.details-control .showModal", function () {
+        var tr = $(this).closest("tr");
+        var row = dttable.row( tr );
+        //alert(row.data().id);
+        var form = get_form("update_password",row.data().id);
+        $("#form_content").html(form);
+        $("#info-modal-conf").modal("show");
+        return false;
+    })
+
+    function get_form(action,id){
+        // Do ajax here to get actual form based on provided parameters
+        var form = "";
+        
+        form = action+id;
+        return form;
+    }
+
+	$("#filter").click(function(){
+        dttable.ajax.reload(null, false );
+    });
+})
 </script>
 @endpush
