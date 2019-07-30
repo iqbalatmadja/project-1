@@ -17,3 +17,5 @@ copy .env_example to .env and edit it
 
 7.  Publish LaravelTheme
 ./artisan vendor:publish --provider="Igaster\LaravelTheme\themeServiceProvider"
+
+8. Import countries.sql to db
