@@ -45,11 +45,26 @@ class TestController extends Controller
         return view('test.countryList');
     }
     
-    public function populateCountry()
+    public function populateCountry(Request $request)
     {
         $countries = DB::table('countries');
         //$c = $countries->where('countryCode','AD');
+        $filter1 = !empty($request->post('filter1')) ? $request->post('filter1') : '';
+        $filter2 = !empty($request->post('filter2')) ? $request->post('filter2') : '';
+        
         $c = $countries;
+        $conditionArray = [];
+        if(!empty($filter1)){
+            $conditionArray[] = ['countryName','LIKE','%'.$filter1.'%'];
+        }
+
+        if(!empty($filter2)){
+            $conditionArray[] = ['currencyCode','LIKE','%'.$filter2.'%'];
+        }
+        
+        
+        $c = $countries->where($conditionArray);
+        
         
         $r = $c->get();
         return response()->json(['data'=>$r]);

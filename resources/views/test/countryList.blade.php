@@ -9,7 +9,8 @@
                 <div class="card-body">
 					COUNTRY<br/>
 					
-                    <input type="text" id="filter1" name="filter1" placeholder="Filter 1"/><br/>
+                    <input type="text" id="filter1" name="filter1" placeholder="Country Name"/><br/>
+                    <input type="text" id="filter2" name="filter2" placeholder="Currency Code"/><br/>
                     <a href="#" onclick="return false;" id="filter">FILTER</a>
                     <table id="example" class="display" style="width:100%">
                         <thead>
@@ -92,7 +93,9 @@ $(document).ready(function(){
             "dataSrc": "data",
             "data":function(data){
                 var filter1 = $("#filter1").val();
+                var filter2 = $("#filter2").val();
                 data.filter1 = filter1;
+                data.filter2 = filter2;
                 data._token = CSRF_TOKEN;
             }
         },
