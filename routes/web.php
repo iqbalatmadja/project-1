@@ -1,4 +1,4 @@
-<?php
+<?php   
 $theme = env('APP_THEME');
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +33,7 @@ Route::get('/test/datepickers','TestController@datepickers')->name('datepickers'
 Route::get('/test/echarts','TestController@echarts')->name('echarts')->middleware(['setTheme:'.$theme]);
 Route::get('/test/ckeditor','TestController@ckeditor')->name('ckeditor')->middleware(['setTheme:'.$theme]);
 Route::get('/test/ajax1','TestController@ajax1')->name('ajax1')->middleware(['setTheme:'.$theme]);
+
+# undone 
+Route::get('/test/countryList','TestController@countryList')->name('countryList')->middleware(['setTheme:'.$theme])->middleware('auth');;
+Route::post('/test/populateCountry','TestController@populateCountry')->name('populateCountry')->middleware(['setTheme:'.$theme])->middleware('auth');;
