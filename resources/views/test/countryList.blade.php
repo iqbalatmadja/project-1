@@ -18,7 +18,7 @@
                                 <th>ID</th>
                                 <th>Country Code</th>
                                 <th>Country Name</th>
-                                <th>ISO 3</th>
+                                <th>Currency Code</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -27,7 +27,7 @@
                                 <th>ID</th>
                                 <th>Country Code</th>
                                 <th>Country Name</th>
-                                <th>ISO 3</th>
+                                <th>Currency Code</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -89,6 +89,7 @@ $(document).ready(function(){
         "ajax": {
             "url":"{{ route('populateCountry') }}",
             "type":"POST",
+            "dataSrc": "data",
             "data":function(data){
                 var filter1 = $("#filter1").val();
                 data.filter1 = filter1;
@@ -108,7 +109,7 @@ $(document).ready(function(){
             { "data":"id" },
             { "data":"countryCode" },
             { "data":"countryName" },
-            { "data":"countryName" },
+            { "data":"currencyCode" },
         ],
         "order": [[1, "desc"]],
         
