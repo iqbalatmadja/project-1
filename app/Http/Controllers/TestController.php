@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
@@ -37,5 +38,20 @@ class TestController extends Controller
     	    'name' => 'Abigail',
     	    'state' => 'CA'
     	]);
+    }
+    
+    public function countryList()
+    {
+        return view('test.countryList');
+    }
+    
+    public function populateCountry()
+    {
+        $countries = DB::table('countries');
+        //$c = $countries->where('countryCode','AD');
+        $c = $countries;
+        
+        $r = $c->get();
+        return response()->json(['data'=>$r]);
     }
 }
