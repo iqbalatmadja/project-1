@@ -52,7 +52,7 @@ class TestController extends Controller
         $filter1 = !empty($request->post('filter1')) ? $request->post('filter1') : '';
         $filter2 = !empty($request->post('filter2')) ? $request->post('filter2') : '';
         
-        $c = $countries;
+        //$c = $countries;
         $conditionArray = [];
         if(!empty($filter1)){
             $conditionArray[] = ['countryName','LIKE','%'.$filter1.'%'];
