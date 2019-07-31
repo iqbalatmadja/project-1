@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,11 +11,18 @@
     <link rel="stylesheet" href="{{ asset('libs/datatables.net-bs4/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('css/stylemajestic.css') }}">
     <link rel="shortcut icon" href="images/favicon.png" />
+    <script src="{{ asset('libs/base/vendor.bundle.base.js') }}"></script>
     @stack('styles')
     @stack('top_scripts')
 </head>
 <body>
 @yield('content')
+<script src="{{ asset('js/off-canvas.js') }}"></script>
+<script src="{{ asset('js/hoverable-collapse.js') }}"></script>
+<script src="{{ asset('js/template.js') }}"></script>
+<script src="{{ asset('js/data-table.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.js') }}"></script>
 @stack('bottom_scripts')
 </body>
 </html>

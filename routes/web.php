@@ -37,3 +37,7 @@ Route::get('/test/ajax1','TestController@ajax1')->name('ajax1')->middleware(['se
 # undone 
 Route::get('/test/countryList','TestController@countryList')->name('countryList')->middleware(['setTheme:'.$theme])->middleware('auth');;
 Route::post('/test/populateCountry','TestController@populateCountry')->name('populateCountry')->middleware(['setTheme:'.$theme])->middleware('auth');;
+
+#
+Route::get('/company-list','CompanyController@list')->name('companyList')->middleware(['setTheme:'.$theme])->middleware('auth');;
+
