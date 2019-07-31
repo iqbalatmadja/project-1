@@ -57,10 +57,15 @@
 <script src="{{ asset('js/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap4.js') }}"></script>
 <script>
-var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 $('body').on('hidden.bs.modal', '.modal', function (event) {
     //$(".modal-content").html(""); //clearing it first, if necessary
     $(this).removeData('bs.modal');
+});
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
 });
 
 (function($) {
@@ -81,7 +86,7 @@ $('body').on('hidden.bs.modal', '.modal', function (event) {
 		                //var filter2 = $("#filter2").val();
 		                //data.filter1 = filter1;
 		                //data.filter2 = filter2;
-		                data._token = CSRF_TOKEN;
+		                //data._token = CSRF_TOKEN;
 		            }
 		        },
 		        "deferRender": true,
