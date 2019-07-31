@@ -34,8 +34,6 @@
                         </tr>
                     </thead>
 				</table>
-				
-				
             </div>
             @include('dashboard.partials.footer')
 		</div>
@@ -145,17 +143,28 @@ $.ajaxSetup({
                 var row = dttable.row( tr );
                 //alert(row.data().id);
                 var form = get_form("update_password",row.data().id);
-                $("#form_content").html(form);
-                $("#info-modal-conf").modal("show");
                 return false;
             })
 
             function get_form(action,id){
                 // Do ajax here to get actual form based on provided parameters
-                var form = "";
-                
-                form = action+id;
-                return form;
+                var url = "{{ route('getCompanyEditForm') }}";
+                var data = {"id":id};
+                $.ajax({async: true,cache: false,type: "POST",url: url,data: data,
+                    beforeSend: function() {},
+                    success: function(response) {
+                        if(response.result == 1){
+                        	$("#form_content").html(response.message);
+                            $("#info-modal-conf").modal("show");
+                        	return true;
+                    	}else{
+							alert('NOT OK');
+							return false;
+                    	};
+                    },
+                    complete: function() {},
+                	error: function() {}
+                });
             }
 		}); //end $(document).ready(function(){
 	});

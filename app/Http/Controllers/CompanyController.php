@@ -28,4 +28,14 @@ class CompanyController extends Controller
         $result = $companies;
         return response()->json(['data'=>$result]);
     }
+    
+    public function getEditForm(Request $request)
+    {
+        $result = 1;
+        $message = "xxxxxxx";//view('company.editForm');
+        
+        $data = ['result'=>$result,'message'=>$message];
+        return response()->json($data);
+        
+    }
 }
