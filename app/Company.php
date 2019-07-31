@@ -12,7 +12,7 @@ class Company extends Model
     public $incrementing = true; # default to true
     //protected $keyType = 'string'; # primary key type, default to integer
     public $timestamps = true; # using timestamps (created_at,updated_at)default to true
-    const CREATED_AT = 'creation_at'; # default to created_at
+    const CREATED_AT = 'created_at'; # default to created_at
     const UPDATED_AT = 'updated_at'; # default to updated_at
     /*
     protected $attributes = [
