@@ -1,6 +1,8 @@
 @extends('layouts.dashboard')
 
 @push('styles')
+<link rel="stylesheet" href="{{ asset('libs/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+
 @endpush
 
 @push('top_scripts')
@@ -49,9 +51,6 @@
 		</div>
 	</div>
 </div>
-<script src="{{ asset('libs/chart.js/Chart.min.js') }}"></script>
-<script src="{{ asset('libs/datatables.net/jquery.dataTables.js') }}"></script>
-<script src="{{ asset('libs/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
 
 
 @endsection
@@ -59,6 +58,13 @@
 
 
 @push('bottom_scripts')
+<script src="{{ asset('libs/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('libs/datatables.net/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('libs/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('js/data-table.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.js') }}"></script>
+
 <script>
 (function($) {
 	  'use strict';
