@@ -31,11 +31,11 @@ class CompanyController extends Controller
     
     public function getEditForm(Request $request)
     {
-        $result = 1;
-        $message = "xxxxxxx";//view('company.editForm');
+        $view = 'company.editForm';
+        $id = !empty($request->post('id')) ? $request->post('id') : '';
+        $data = ['id'=>$id];
         
-        $data = ['result'=>$result,'message'=>$message];
-        return response()->json($data);
+        return response()->view($view,$data,200)->header('Content-Type', '');
         
     }
 }

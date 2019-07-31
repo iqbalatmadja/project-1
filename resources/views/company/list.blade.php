@@ -141,29 +141,18 @@ $.ajaxSetup({
             $("#dttable tbody").on( "click", "tr td.details-control .showModal", function () {
                 var tr = $(this).closest("tr");
                 var row = dttable.row( tr );
-                //alert(row.data().id);
-                var form = get_form("update_password",row.data().id);
+                get_form("update_password",row.data().id);
                 return false;
             })
 
             function get_form(action,id){
-                // Do ajax here to get actual form based on provided parameters
                 var url = "{{ route('getCompanyEditForm') }}";
-                var data = {"id":id};
+                var data = {"action":action,"id":id};
                 $.ajax({async: true,cache: false,type: "POST",url: url,data: data,
-                    beforeSend: function() {},
                     success: function(response) {
-                        if(response.result == 1){
-                        	$("#form_content").html(response.message);
-                            $("#info-modal-conf").modal("show");
-                        	return true;
-                    	}else{
-							alert('NOT OK');
-							return false;
-                    	};
+                    	$("#form_content").html(response);
+                        $("#info-modal-conf").modal("show");
                     },
-                    complete: function() {},
-                	error: function() {}
                 });
             }
 		}); //end $(document).ready(function(){
