@@ -35,7 +35,7 @@ class CompanyController extends Controller
         $id = !empty($request->post('id')) ? $request->post('id') : '';
         $data = ['id'=>$id];
         
-        return response()->view($view,$data,200)->header('Content-Type', '');
+        return response()->view($view,$data,200)->header('Content-Type', 'text/html');
         
     }
 }
