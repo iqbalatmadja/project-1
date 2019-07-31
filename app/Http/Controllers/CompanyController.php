@@ -12,8 +12,8 @@ class CompanyController extends Controller
     {
         //$companies = Company::all(); # will need "use App\Company;" above
         // or
-        $companies = \App\Company::all(); # dont need "use App\Company;" above
-        $data = ['companies'=>$companies];
+        //$companies = \App\Company::all(); # dont need "use App\Company;" above
+        $data = [];
         return view('company.list',$data);
     }
 }

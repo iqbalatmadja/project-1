@@ -19,9 +19,7 @@
 						@include('dashboard.partials.dashboardBanner')
                     </div>
                 </div>
-				<?php 
-				print_r($companies);
-				?>
+				
             </div>
             @include('dashboard.partials.footer')
 		</div>
