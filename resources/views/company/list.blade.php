@@ -89,8 +89,8 @@ $.ajaxSetup({
 		        },
 		        "deferRender": true,
 		        "columns":[
-		            { "data":"name" },
-		            { "data":"is_active" },
+		            { "data":"company_name" },
+		            { "data":"company_status_text" },
 		            {
 		                "className":"details-control",
 		                "orderable": false,
@@ -110,7 +110,7 @@ $.ajaxSetup({
                 return "<table cellpadding=\"5\" cellspacing=\"0\" border=\"0\" style=\"padding-left:50px;\">"+
                     "<tr>"+
                         "<td>Full name:</td>"+
-                        "<td>"+d.name+"</td>"+
+                        "<td>"+d.company_name+"</td>"+
                     "</tr>"+
                     "<tr>"+
                         "<td>Extra info:</td>"+
@@ -141,7 +141,7 @@ $.ajaxSetup({
             $("#dttable tbody").on( "click", "tr td.details-control .showModal", function () {
                 var tr = $(this).closest("tr");
                 var row = dttable.row( tr );
-                get_form("update_password",row.data().id);
+                get_form("update_password",row.data().company_id);
                 return false;
             })
 
