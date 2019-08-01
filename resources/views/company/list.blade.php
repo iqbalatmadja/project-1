@@ -155,6 +155,17 @@ $.ajaxSetup({
                     },
                 });
             }
+
+//         	function update_company(frmdata){
+//         	    var url = "{{ route('test') }}";
+//         	    var data = {"frmdata":frmdata};
+//         	    Ajax.call(data, url, function(resp1){
+//         	        if(resp1.result == 1){
+//         	            $("#info-modal-conf").modal("toggle");
+//         	            dt1.ajax.reload(null,false);
+//         	        }
+//         	    });
+//         	}
 		}); //end $(document).ready(function(){
 	});
 })(jQuery);
