@@ -69,4 +69,9 @@ class TestController extends Controller
         $r = $c->get();
         return response()->json(['data'=>$r]);
     }
+    
+    public function ajaxDummy(Request $request)
+    {
+        return response()->json([]);
+    }
 }

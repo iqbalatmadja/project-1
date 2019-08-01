@@ -48,9 +48,18 @@ class CompanyController extends Controller
     {
         $view = 'company.editForm';
         $id = !empty($request->post('id')) ? $request->post('id') : '';
-        $data = ['id'=>$id];
+        $company = Company::find($id);
+        
+        $data = ['company'=>$company];
         
         return response()->view($view,$data,200)->header('Content-Type', 'text/html');
         
     }
+    
+    public function updateCompany(Request $request)
+    {
+        $data = [];
+        return response()->json($data);
+    }
+    
 }

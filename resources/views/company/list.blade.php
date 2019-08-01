@@ -156,17 +156,30 @@ $.ajaxSetup({
                 });
             }
 
-//         	function update_company(frmdata){
-//         	    var url = "{{ route('test') }}";
-//         	    var data = {"frmdata":frmdata};
-//         	    Ajax.call(data, url, function(resp1){
-//         	        if(resp1.result == 1){
-//         	            $("#info-modal-conf").modal("toggle");
-//         	            dt1.ajax.reload(null,false);
-//         	        }
-//         	    });
-//         	}
+    		$(document).on("click", "#save", function (e) {
+    		    e.preventDefault();
+    		    var frmdata = $("#mainfrm").serialize();
+    		    update_company(frmdata);
+    		});
+
+    		function update_company(frmdata){
+    			var url = "{{ route('updateCompany') }}";
+    		    var data = {"frmdata":frmdata};
+    		    $.ajax({
+    		        async: true,cache: false,type: "POST",url: url,data: data,
+    		        success: function(response) {
+    		    		alert("OK");
+    		    		$("#info-modal-conf").modal("toggle");
+    		    		dttable.ajax.reload(null,false);
+    		        },
+    			});
+    		}
+        	
+        	
 		}); //end $(document).ready(function(){
+
+				
+		
 	});
 })(jQuery);
 </script>

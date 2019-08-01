@@ -39,7 +39,10 @@ Route::get('/test/countryList','TestController@countryList')->name('countryList'
 Route::post('/test/populateCountry','TestController@populateCountry')->name('populateCountry')->middleware(['setTheme:'.$theme])->middleware('auth');
 
 #
+Route::post('/ajaxDummy','TestController@ajaxDummy')->name('ajaxDummy')->middleware(['setTheme:'.$theme]);
+
 Route::get('/company-list','CompanyController@list')->name('companyList')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/populateCompany','CompanyController@populateCompany')->name('populateCompany')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/getCompanyEditForm','CompanyController@getEditForm')->name('getCompanyEditForm')->middleware(['setTheme:'.$theme])->middleware('auth');
+Route::post('/updateCompany','CompanyController@updateCompany')->name('updateCompany')->middleware(['setTheme:'.$theme])->middleware('auth');
 
