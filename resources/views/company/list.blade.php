@@ -112,8 +112,8 @@ $.ajaxSetup({
 		                "orderable": false,
 		                "data": null,
 		                "defaultContent": "<a href=\"#\" class=\"showInfo\">a</a>"+
-		                "&nbsp;<a href=\"#\" class=\"showModal\">Edit</a>"+
-		                "&nbsp;<a href=\"#\" class=\"toggleStatus\">Toggle Status</a>"+
+		                "&nbsp;<button type='button' class='btn btn-warning showModal'><i class='mdi mdi-lead-pencil menu-icon'></i>Edit</button>"+
+		                "&nbsp;<button type='button' class='btn btn-danger toggleStatus'><i class='mdi mdi-nintendo-switch menu-icon'></i>Toggle</button>"+
 		                
 		                ""
 		            },
