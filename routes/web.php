@@ -45,4 +45,5 @@ Route::get('/company-list','CompanyController@list')->name('companyList')->middl
 Route::post('/populateCompany','CompanyController@populateCompany')->name('populateCompany')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/getCompanyEditForm','CompanyController@getEditForm')->name('getCompanyEditForm')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/updateCompany','CompanyController@updateCompany')->name('updateCompany')->middleware(['setTheme:'.$theme])->middleware('auth');
+Route::post('/toggleCompanyStatus','CompanyController@toggleCompanyStatus')->name('toggleCompanyStatus')->middleware(['setTheme:'.$theme])->middleware('auth');
 

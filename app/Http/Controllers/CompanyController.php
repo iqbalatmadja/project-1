@@ -90,5 +90,24 @@ class CompanyController extends Controller
         $data = ['result'=>$result,'message'=>$message];
         return response()->json($data);
     }
+
+    public function toggleCompanyStatus(Request $request)
+    {
+        $companyId = !empty($request->post('id')) ? $request->post('id') : 0;
+        $company = Company::find($companyId);
+        
+        if(empty($company)){
+            $result = 0;
+            $message = 'Invalid ID!';
+        }else{
+            $company->is_active = $company->is_active == 1 ? 0 : 1;
+            $company->save();
+            $result = 1;
+            $message = '';
+        }
+        
+        $data = ['result'=>$result,'message'=>$message];
+        return response()->json($data);
+    }
     
 }

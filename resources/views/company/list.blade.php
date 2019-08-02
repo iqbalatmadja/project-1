@@ -97,11 +97,13 @@ $.ajaxSetup({
 		                "data": null,
 		                "defaultContent": "<a href=\"#\" class=\"showInfo\">a</a>"+
 		                "&nbsp;<a href=\"#\" class=\"showModal\">Edit</a>"+
+		                "&nbsp;<a href=\"#\" class=\"toggleStatus\">Toggle Status</a>"+
+		                
 		                ""
 		            },
 		            
 		        ],
-		        "order": [[1, "desc"]],
+		        "order": [[0, "desc"]],
 		        
 		        
 			})
@@ -145,6 +147,13 @@ $.ajaxSetup({
                 return false;
             })
 
+            $("#dttable tbody").on( "click", "tr td.details-control .toggleStatus", function () {
+                var tr = $(this).closest("tr");
+                var row = dttable.row( tr );
+                toggle_status(row.data().company_id);
+                return false;
+            })
+            
             function get_form(action,id){
                 var url = "{{ route('getCompanyEditForm') }}";
                 var data = {"action":action,"id":id};
@@ -156,6 +165,16 @@ $.ajaxSetup({
                 });
             }
 
+            function toggle_status(id){
+                var url = "{{ route('toggleCompanyStatus') }}";
+                var data = {"id":id};
+                $.ajax({async: true,cache: false,type: "POST",url: url,data: data,
+                    success: function(response) {
+	                	dttable.ajax.reload(null,false);
+                    },
+                });
+            }
+        	
     		$(document).on("click", "#save", function (e) {
     		    e.preventDefault();
     		    var frmdata = $("#mainfrm").serialize();
