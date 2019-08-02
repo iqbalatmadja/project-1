@@ -58,7 +58,36 @@ class CompanyController extends Controller
     
     public function updateCompany(Request $request)
     {
-        $data = [];
+        $frmdata = !empty($request->post('frmdata')) ? $request->post('frmdata') : '';
+        $pars = [];
+        parse_str($frmdata, $pars); 
+        
+        $companyId = $pars['cid'];
+        $name = !empty($pars['n']) ? $pars['n'] : '';
+        
+        $company = Company::find($companyId);
+        
+        if(empty($company)){
+           $result = 0;
+           $message = 'Invalid ID!';
+        }else{
+            if(empty($name)){
+                $result = 0;
+                $message = 'A Name Is Needed!';
+            }else{
+                $company->name = $name;
+                if($company->save()){
+                    $result = 1;
+                    $message = '';
+                }else{
+                    $result = 0;
+                    $message = 'Something is wrong!';
+                };
+                
+            }
+        }
+        
+        $data = ['result'=>$result,'message'=>$message];
         return response()->json($data);
     }
     

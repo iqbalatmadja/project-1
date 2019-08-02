@@ -8,7 +8,7 @@
             <div class="panel-content">
                 <div class="panel-body">
 					<form id="mainfrm" name="mainfrm" method="post" action="#">
-						<input type="text" class="form-control" id="cid" name="cid" value="{{ $company->id }}">
+						<input type="hidden" class="form-control" id="cid" name="cid" value="{{ $company->id }}">
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="control-label">Name</label>

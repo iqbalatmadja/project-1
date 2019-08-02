@@ -96,7 +96,7 @@ $.ajaxSetup({
 		                "orderable": false,
 		                "data": null,
 		                "defaultContent": "<a href=\"#\" class=\"showInfo\">a</a>"+
-		                "&nbsp;<a href=\"#\" class=\"showModal\">b</a>"+
+		                "&nbsp;<a href=\"#\" class=\"showModal\">Edit</a>"+
 		                ""
 		            },
 		            
@@ -168,9 +168,12 @@ $.ajaxSetup({
     		    $.ajax({
     		        async: true,cache: false,type: "POST",url: url,data: data,
     		        success: function(response) {
-    		    		alert("OK");
-    		    		$("#info-modal-conf").modal("toggle");
-    		    		dttable.ajax.reload(null,false);
+        		    	if(response.result == 1){
+        		    		$("#info-modal-conf").modal("toggle");
+        		    		dttable.ajax.reload(null,false);
+        		    	}else{
+							alert("Something is wrong!");
+        		    	}
     		        },
     			});
     		}
