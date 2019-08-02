@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
+    function roundNearestHundred($number)
+    {
+        $round = (strlen($number)-1)*-1;
+        return round($number,$round); 
+    }
+    
     public function __construct()
     {
         //$this->middleware('auth');
@@ -14,6 +20,8 @@ class TestController extends Controller
 
     public function index()
     {
+        $x = self::roundNearestHundred(150);
+        echo $x;die;
         return view('test.index');
     }
 
