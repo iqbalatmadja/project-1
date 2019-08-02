@@ -49,6 +49,9 @@ class CompanyController extends Controller
         $view = 'company.editForm';
         $id = !empty($request->post('id')) ? $request->post('id') : '';
         $company = Company::find($id);
+        if(empty($company)){
+            $company = new Company;
+        }
         
         $data = ['company'=>$company];
         
@@ -65,7 +68,12 @@ class CompanyController extends Controller
         $companyId = $pars['cid'];
         $name = !empty($pars['n']) ? $pars['n'] : '';
         
-        $company = Company::find($companyId);
+        if(empty($companyId)){
+            $company = new Company;
+            $company->save();
+        }else{
+            $company = Company::find($companyId);
+        }
         
         if(empty($company)){
            $result = 0;

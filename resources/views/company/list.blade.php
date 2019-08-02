@@ -24,16 +24,32 @@
 						@include('dashboard.partials.dashboardBanner')
                     </div>
                 </div>
-				<h3>Company List</h3>
-				<table id="dttable" class="display" style="width:100%">
-					<thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-				</table>
+                <div class="row" style="margin-bottom: 10px;">
+				    <div class="col-md-12">	
+				    	<span style="float: left;">
+	        				<h3>Company List</h3>
+				    	</span>
+				    	<span style="float: right;">
+				    		<button type="button" class="btn btn-primary" id="add_company">
+				    		<i class="mdi mdi-plus menu-icon"></i>
+				    		Create New
+				    		</button>
+				    	</span>
+    				</div>
+    			</div>	
+        		<div class="row">
+				    <div class="col-md-12">	
+        				<table id="dttable" class="display" style="width:100%">
+        					<thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+        				</table>
+    				</div>
+				</div>
             </div>
             @include('dashboard.partials.footer')
 		</div>
@@ -181,6 +197,12 @@ $.ajaxSetup({
     		    update_company(frmdata);
     		});
 
+    		$(document).on("click", "#add_company", function (e) {
+    		    e.preventDefault();
+        		get_form("create_company",0);
+    		});
+    		
+    		
     		function update_company(frmdata){
     			var url = "{{ route('updateCompany') }}";
     		    var data = {"frmdata":frmdata};
