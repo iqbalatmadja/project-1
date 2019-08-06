@@ -42,6 +42,7 @@
         				<table id="dttable" class="display" style="width:100%">
         					<thead>
                                 <tr>
+                                	<th>ID</th>
                                     <th>Name</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -105,6 +106,7 @@ $.ajaxSetup({
 		        },
 		        "deferRender": true,
 		        "columns":[
+		            { "data":"company_id" },
 		            { "data":"company_name" },
 		            { "data":"company_status_text" },
 		            {

@@ -17,7 +17,7 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="input-counter input-group">
                                     <div style="float: left;">
-                                        <input type="text" class="form-control" id="n" name="n" value="{{ $company->name }}">
+                                        <input type="text" class="form-control" id="n" name="n" value="{{ $company->name }}" maxlength="64">
                                     </div>
                                     
                                 </div>
