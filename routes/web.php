@@ -46,4 +46,5 @@ Route::post('/populateCompany','CompanyController@populateCompany')->name('popul
 Route::post('/getCompanyEditForm','CompanyController@getEditForm')->name('getCompanyEditForm')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/updateCompany','CompanyController@updateCompany')->name('updateCompany')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/toggleCompanyStatus','CompanyController@toggleCompanyStatus')->name('toggleCompanyStatus')->middleware(['setTheme:'.$theme])->middleware('auth');
+Route::get('/image-management','CompanyController@list')->name('imageManagement')->middleware(['setTheme:'.$theme])->middleware('auth');
 

@@ -71,6 +71,12 @@
 				<span class="menu-title">Company List</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('imageManagement') }}">
+                <i class="mdi mdi-camera-image menu-icon"></i>
+				<span class="menu-title">Image Management</span>
+            </a>
+        </li>
 
     </ul>
 </nav>
