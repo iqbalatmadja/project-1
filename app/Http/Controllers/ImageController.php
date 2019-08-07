@@ -7,23 +7,28 @@ use App\Company;
 use App\Image;
 class ImageController extends Controller
 {
-    //
     public function index(Request $request)
     {
-        //$companies = Company::all(); # will need "use App\Company;" above
-        // or
-        //$companies = \App\Company::all(); # dont need "use App\Company;" above
+        abort(403, 'Unauthorized action.');
+    }
+
+    public function admin(Request $request)
+    {
+        $data = [];
+        return view('image.admin',$data);
+    }
+    
+    /*
+    public function index(Request $request)
+    {
         $data = [];
         return view('image.index',$data);
     }
+    */
     
+    /*
     public function save(Request $request)
     {
-//         $image = Image::firstOrCreate(
-//                 ['filename' => rand(0,10000)],
-//         );
-//         $image->save();
-        
         $imageFile = $request->file('file');
         $imageName = $imageFile->getClientOriginalName();
         $imageFile->move(public_path('uploads/images'),$imageName);
@@ -34,7 +39,9 @@ class ImageController extends Controller
         $image->save();
         return response()->json(['success'=>$imageName]);
     }
+    */
     
+    /*
     public function delete(Request $request)
     {
         $filename =  $request->get('filename');
@@ -45,7 +52,5 @@ class ImageController extends Controller
         }
         return $filename;
     }
-    
-    
-    
+    */
 }
