@@ -92,9 +92,10 @@ $.ajaxSetup({
 					contentType: false,
 					processData: false,
 					success:function(data){
-						
-					    $('#original').attr('src', 'uploads/images/'+ data.filename);
-					    $('#thumbImg').attr('src', 'uploads/images/thumbs/'+ data.filename);
+						var url1 = '{{ url("uploads/images/") }}/'+data.filename;
+						var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
+					    $('#original').attr('src', url1);
+					    $('#thumbImg').attr('src', url2);
 					},
 					error: function(data){
 					    console.log(data);
