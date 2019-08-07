@@ -26,7 +26,24 @@
     			<div class="row" style="margin-bottom: 10px;">
 				    <div class="col-md-12">	
 					
-					fqewdf2ef2f
+						<form id="imageUploadForm" action="javascript:void(0)" enctype="multipart/form-data">
+							<div class="file-field">
+								<div class="row">
+									<div class=" col-md-8 mb-4">
+										<img id="original" src="" class=" z-depth-1-half avatar-pic" alt="">
+										<div class="d-flex justify-content-center mt-3">
+    										<div class="btn btn-mdb-color btn-rounded float-left">
+    											<input type="file" name="photo_name" id="photo_name" required=""> <br>
+    												<button type="submit" class="btn btn-secondary d-flex justify-content-center mt-3">submit</button>
+    										</div>
+										</div>
+									</div>
+									<div class=" col-md-4 mb-4">
+										<img id="thumbImg" src="" class=" z-depth-1-half thumb-pic" alt="">
+									</div>
+								</div>
+							</div>
+						</form>
 					
 					</div>
 				</div>
@@ -64,7 +81,26 @@ $.ajaxSetup({
 	'use strict';
 	$(function() {
 		$(document).ready(function(){		
-    		
+			$('#imageUploadForm').on('submit',(function(e) {
+				e.preventDefault();
+				var formData = new FormData(this);
+				$.ajax({
+					type:'POST',
+					url: "{{ route('imageSave')}}",
+					data:formData,
+					cache:false,
+					contentType: false,
+					processData: false,
+					success:function(data){
+						
+					    $('#original').attr('src', 'uploads/images/'+ data.filename);
+					    $('#thumbImg').attr('src', 'uploads/images/thumbs/'+ data.filename);
+					},
+					error: function(data){
+					    console.log(data);
+					}
+				});
+			}));
         	
 		}); //end $(document).ready(function(){
 
