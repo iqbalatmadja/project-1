@@ -85,6 +85,8 @@ $.ajaxSetup({
 Dropzone.options.dropzone =
 {
 	maxFilesize: 12,
+	maxFiles: 2,
+	autoProcessQueue: true,
 	renameFile: function(file) {
 		var dt = new Date();
        	var time = dt.getTime();
