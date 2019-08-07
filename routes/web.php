@@ -48,6 +48,9 @@ Route::post('/updateCompany','CompanyController@updateCompany')->name('updateCom
 Route::post('/toggleCompanyStatus','CompanyController@toggleCompanyStatus')->name('toggleCompanyStatus')->middleware(['setTheme:'.$theme])->middleware('auth');
 
 Route::get('/image-management','ImageController@index')->name('imageManagement')->middleware(['setTheme:'.$theme])->middleware('auth');
+Route::post('/image-save','ImageController@save')->name('imageSave')->middleware(['setTheme:'.$theme])->middleware('auth');
+Route::post('/image-delete','ImageController@delete')->name('imageDelete')->middleware(['setTheme:'.$theme])->middleware('auth');
+
 
 Route::post('/form-manager','FormController@index')->name('formManager')->middleware(['setTheme:'.$theme])->middleware('auth');
 

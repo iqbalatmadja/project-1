@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 
+@push('styles')
+@endpush
+
 @push('top_scripts')
 @endpush
 
@@ -25,14 +28,7 @@
     			</div>	
     			<div class="row" style="margin-bottom: 10px;">
 				    <div class="col-md-12">	
-					
-					
-						<form method="post" action="{{ route('imageSave') }}" enctype="multipart/form-data" class="dropzone" id="dropzone">
-						@csrf
-						</form>   					
-					
-					
-					
+					d2e3d23
 					</div>
 				</div>
             </div>
@@ -49,13 +45,9 @@
 </div>
 @endsection
 
-@push('styles')
-<link href="{{ asset('libs/dropzone.js/min/dropzone.min.css') }}" rel="stylesheet">
-@endpush
+
 
 @push('bottom_scripts')
-<script src="{{ asset('libs/dropzone.js/min/dropzone.min.js') }}"></script>
-
 <script>
 $('body').on('hidden.bs.modal', '.modal', function (event) {
     //$(".modal-content").html(""); //clearing it first, if necessary
@@ -80,45 +72,5 @@ $.ajaxSetup({
 		
 	});
 })(jQuery);
-
-
-Dropzone.options.dropzone =
-{
-	maxFilesize: 12,
-	renameFile: function(file) {
-		var dt = new Date();
-       	var time = dt.getTime();
-      	return time+file.name;
-	},
-   	acceptedFiles: ".jpeg,.jpg,.png,.gif",
-   	addRemoveLinks: true,
-   	timeout: 5000,
-   	removedfile: function(file) 
-    {
-        var name = file.upload.filename;
-        $.ajax({
-            headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    },
-            type: 'POST',
-            url: '{{ route("imageDelete") }}',
-            data: {filename: name},
-            success: function (data){
-                alert("File has been successfully removed!!");
-            },
-            error: function(e) {
-                console.log(e);
-            }});
-            var fileRef;
-            return (fileRef = file.previewElement) != null ? 
-            fileRef.parentNode.removeChild(file.previewElement) : void 0;
-    },
-   	success: function(file, response) {
-		console.log(response);
-   	},
-   	error: function(file, response){
-		return false;
-   	}
-}	
 </script>
 @endpush
