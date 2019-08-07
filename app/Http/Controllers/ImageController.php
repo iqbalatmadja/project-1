@@ -19,12 +19,18 @@ class ImageController extends Controller
     
     public function save(Request $request)
     {
-        $image = $request->file('file');
-        $imageName = $image->getClientOriginalName();
-        $image->move(public_path('uploads/images'),$imageName);
+//         $image = Image::firstOrCreate(
+//                 ['filename' => rand(0,10000)],
+//         );
+//         $image->save();
+        
+        $imageFile = $request->file('file');
+        $imageName = $imageFile->getClientOriginalName();
+        $imageFile->move(public_path('uploads/images'),$imageName);
         
         $image = new Image;
         $image->filename = $imageName;
+        $image->user_id = Auth()->user()->id;
         $image->save();
         return response()->json(['success'=>$imageName]);
     }
