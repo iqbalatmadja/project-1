@@ -26,7 +26,11 @@
 				    	</span>
     				</div>
     			</div>	
-
+    			<div class="row" style="margin-bottom: 10px;">
+				    <div class="col-md-12">	
+					d2e3d23
+					</div>
+				</div>
             </div>
             @include('dashboard.partials.footer')
 		</div>
