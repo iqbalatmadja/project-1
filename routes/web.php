@@ -52,6 +52,10 @@ Route::get('/image/admin','ImageController@admin')->name('imageManagement')->mid
 Route::post('/image/save','ImageController@save')->name('imageSave')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/image/delete','ImageController@delete')->name('imageDelete')->middleware(['setTheme:'.$theme])->middleware('auth');
 
+#Snippets
+Route::get('/snippets','SnippetsController@index')->name('snippets')-> middleware(['setTheme:'.$theme])->middleware('auth');
+Route::get('/snippets/dropzone','SnippetsController@dropzone')->name('snippetsDropzone')-> middleware(['setTheme:'.$theme])->middleware('auth');
 
-Route::post('/form-manager','FormController@index')->name('formManager')->middleware(['setTheme:'.$theme])->middleware('auth');
+
+
 
