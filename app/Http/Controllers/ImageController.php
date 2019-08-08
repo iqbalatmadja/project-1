@@ -33,7 +33,10 @@ class ImageController extends Controller
             $ImageUpload->save(public_path('uploads/images').'/'.$fileName);
             
             // for save thumnail image
-            $ImageUpload->resize(250,125);
+            //$ImageUpload->resize(250,170);
+            $ImageUpload->resize(250,null,function($constraint) {
+                $constraint->aspectRatio(); # auto width according to aspect ratio
+            });
             $ImageUpload = $ImageUpload->save(public_path('uploads/images/thumbs').'/'.$fileName);
             
             $image = new Image;
