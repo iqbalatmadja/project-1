@@ -44,9 +44,6 @@ class ImageController extends Controller
             $image = Image::latest()->first(['filename']);
             return Response()->json($image);
         }
-        
-        
-        
     }
 
     

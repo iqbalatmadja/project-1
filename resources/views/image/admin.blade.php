@@ -24,8 +24,41 @@
     				</div>
     			</div>	
     			<div class="row" style="margin-bottom: 10px;">
+    				<div class="col-md-12">
+    					<div id="">
+    					
+<div class="container">
+
+  <hr class="mt-2 mb-5">
+
+  <div class="row text-center text-lg-left" id="image-block">
+	<?php 
+	for($i=0;$i<=5;$i++){
+    ?>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+          </a>
+    </div>
+    
+    <?php 
+	}
+	?>
+    
+    
+  </div>
+
+</div>
+<!-- /.container -->
+    					
+    					
+    					
+    					
+    					</div>
+    				</div>
 				    <div class="col-md-12">	
-					
+						
+						
 						<form id="imageUploadForm" action="javascript:void(0)" enctype="multipart/form-data">
 							<div class="file-field">
 								<div class="row">
@@ -96,8 +129,11 @@ $.ajaxSetup({
 					success:function(data){
 						var url1 = '{{ url("uploads/images/") }}/'+data.filename;
 						var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
-					    $('#original').attr('src', url1);
-					    $('#thumbImg').attr('src', url2);
+						$("#image-block").append('<div class="col-lg-3 col-md-4 col-6">'+
+						'<a href="#" class="d-block mb-4 h-100">'+
+						'<img class="img-fluid img-thumbnail" src="'+url2+'" alt="">'+
+						'</a>'+
+						'</div>');
 					},
 					error: function(data){
 					    console.log(data);
