@@ -33,7 +33,7 @@
 							    $thumbImage = url('uploads/images/thumbs/'.$i->filename);
 						    ?>
 						    	<div class="grid-item">
-                                    <a class="" href="{{ $originalImage }}" data-lightbox="image-set">
+                                    <a class="" href="{{ $originalImage }}" data-lightbox="image-set" data-title="{{ $originalImage }}">
                                     <img src="{{ $thumbImage }}" alt="" class="">
                                     </a>
                                 </div>
@@ -60,13 +60,6 @@
 		</div>
 	</div>
 </div>
-<div id="info-modal-conf" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-body edit-content">
-        <div class="modal-content" id="form_content"></div>
-      </div>
-    </div>
-</div>
 @endsection
 
 @push('styles')
@@ -84,11 +77,6 @@
 <script src="{{ asset('libs/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('libs/imagesloaded.pkgd.min.js') }}"></script>
 <script>
-$('body').on('hidden.bs.modal', '.modal', function (event) {
-    //$(".modal-content").html(""); //clearing it first, if necessary
-    $(this).removeData('bs.modal');
-});
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -96,41 +84,62 @@ $.ajaxSetup({
 });
 
 var $grid = $('.grid').imagesLoaded( function() {
-	  // init Isotope after all images have loaded
-	  $grid.isotope({
-		  itemSelector: '.grid-item',
-	  });
+	// init Isotope after all images have loaded
+	$grid.isotope({
+		itemSelector: '.grid-item',
 	});
+});
 
 
-$('#imageUploadForm').on('submit',(function(e) {
-	e.preventDefault();
-	var formData = new FormData(this);
-	$.ajax({
-		type:'POST',
-		url: "{{ route('imageSave')}}",
-		data:formData,
-		cache:false,
-		contentType: false,
-		processData: false,
-		success:function(data){
-			$("#photo_name").val("");
-			$("#preview").attr("src","https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png");
-			
-			var url1 = '{{ url("uploads/images/") }}/'+data.filename;
-			var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
-			var item2append = '<div class="grid-item">'+
-			'<a class="" href="'+url1+'" data-lightbox="image-set">'+
-			'<img src="'+url2+'" alt="" class=""></a></div>';
-			var $content = $(item2append)
-			$grid.append( $content ).isotope( 'appended', $content )		    
-			
-		},
-		error: function(data){
-		    console.log(data);
-		}
-	});
-}));
+$(document).ready(function(){
+	lightbox.option({
+		'alwaysShowNavOnTouchDevices': false,
+		'disableScrolling': false,
+		'fadeDuration':600,
+		'fitImagesInViewport': true,
+		'imageFadeDuration': 600,
+		//'maxWidth': 10,
+		//'maxHeight': 10,
+		'positionFromTop': 50,
+		'resizeDuration': 700,
+		'showImageNumberLabel': true,
+		'wrapAround': false,
+		'albumLabel': "Imagessss %1 of %2"
+	})
+
+	$('#imageUploadForm').on('submit',(function(e) {
+		e.preventDefault();
+		var formData = new FormData(this);
+		$.ajax({
+			type:'POST',
+			url: "{{ route('imageSave')}}",
+			data:formData,
+			cache:false,
+			contentType: false,
+			processData: false,
+			success:function(data){
+				$("#photo_name").val("");
+				$("#preview").attr("src","https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png");
+				
+				var url1 = '{{ url("uploads/images/") }}/'+data.filename;
+				var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
+				var item2append = '<div class="grid-item">'+
+				'<a class="" href="'+url1+'" data-lightbox="image-set">'+
+				'<img src="'+url2+'" alt="" class=""></a></div>';
+				var $content = $(item2append)
+				$grid.append( $content ).isotope( 'appended', $content )		    
+				
+			},
+			error: function(data){
+			    console.log(data);
+			}
+		});
+	}));
+		
+	
+})
+
+
 
 function readURL(input, id) {
 	id = id || '#preview';
