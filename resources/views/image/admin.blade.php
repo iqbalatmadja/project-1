@@ -26,11 +26,15 @@
     			<div class="row" style="margin-bottom: 10px;">
     				<div class="col-md-12">
 						<div class="row" id="image_block">
-							<?php for($i=1;$i<=5;$i++){?>
-							<div class="col-md-3">
+							<?php 
+							foreach($images as $i){
+							    $originalImage = url('uploads/images/'.$i->filename);
+							    $thumbImage = url('uploads/images/thumbs/'.$i->filename);
+						    ?>
+							<div class="col-md-3" style="margin-top: 11px;">
                                 <div class="card">
-                                    <a class="" href="https://dummyimage.com/600x400/000/fff" data-lightbox="example-set">
-                                    <img src="https://dummyimage.com/600x400/000/fff" alt="Park" class="card-img-top">
+                                    <a class="" href="{{ $originalImage }}" data-lightbox="image-set">
+                                    <img src="{{ $thumbImage }}" alt="" class="">
                                     </a>
                                 </div>
                             </div>
