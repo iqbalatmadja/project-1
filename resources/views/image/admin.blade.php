@@ -26,19 +26,20 @@
     			<div class="row" style="margin-bottom: 10px;">
     				<div class="col-md-12">
 						<div class="row" id="image_block">
+							<div class="col-md-12 grid">
 							<?php 
 							foreach($images as $i){
 							    $originalImage = url('uploads/images/'.$i->filename);
 							    $thumbImage = url('uploads/images/thumbs/'.$i->filename);
 						    ?>
-							<div class="col-md-3" style="margin-top: 11px;">
-                                <div class="card">
+						    	<div class="grid-item">
                                     <a class="" href="{{ $originalImage }}" data-lightbox="image-set">
                                     <img src="{{ $thumbImage }}" alt="" class="">
                                     </a>
                                 </div>
-                            </div>
                             <?php }?>
+							
+							</div>
 						</div>
     				</div>
     			</div>
@@ -72,13 +73,16 @@
 <link href="{{ asset('libs/lightbox2/dist/css/lightbox.min.css') }}" rel="stylesheet">
 
 <style>
-
+.grid-item { 
+    padding: 5px 5px 5px 5px;
+}
 </style>
 @endpush
 
 @push('bottom_scripts')
 <script src="{{ asset('libs/lightbox2/dist/js/lightbox.min.js') }}"></script>
-
+<script src="{{ asset('libs/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('libs/imagesloaded.pkgd.min.js') }}"></script>
 <script>
 $('body').on('hidden.bs.modal', '.modal', function (event) {
     //$(".modal-content").html(""); //clearing it first, if necessary
@@ -90,6 +94,14 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
+var $grid = $('.grid').imagesLoaded( function() {
+	  // init Isotope after all images have loaded
+	  $grid.isotope({
+		  itemSelector: '.grid-item',
+	  });
+	});
+
 
 $('#imageUploadForm').on('submit',(function(e) {
 	e.preventDefault();
@@ -107,13 +119,12 @@ $('#imageUploadForm').on('submit',(function(e) {
 			
 			var url1 = '{{ url("uploads/images/") }}/'+data.filename;
 			var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
-			$("#image_block").append('<div class="col-md-3">'+
-                    '<div class="card">'+
-                    '<a class="" href="'+url1+'" data-lightbox="example-set">'+
-                    '<img src="'+url2+'" alt="Park" class="card-img-top">'+
-                    '</a>'+
-                '</div>'+
-            '</div>');
+			var item2append = '<div class="grid-item">'+
+			'<a class="" href="'+url1+'" data-lightbox="image-set">'+
+			'<img src="'+url2+'" alt="" class=""></a></div>';
+			var $content = $(item2append)
+			$grid.append( $content ).isotope( 'appended', $content )		    
+			
 		},
 		error: function(data){
 		    console.log(data);
