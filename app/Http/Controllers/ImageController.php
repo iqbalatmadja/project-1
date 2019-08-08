@@ -26,25 +26,32 @@ class ImageController extends Controller
         ]);
         
         if ($files = $request->file('photo_name')) {
+            $userId = Auth()->user()->id;
             
-            $fileName = time().$files->getClientOriginalName();
+            $image = new Image;
+            $image->filename = rand(1,9000);
+            $image->user_id = $userId;
+            $image->save();
+            
+            $fileExt = $files->getClientOriginalExtension();
+            $fileName = $userId.'_'.$image->id.'_'.rand(10,99999999).'.'.$fileExt;
+            
+            # Updating table for new filename
+            $image->filename = $fileName;
+            $image->save();
+            
             // for save original image
             $ImageUpload = ImageIntervention::make($files);
             $ImageUpload->save(public_path('uploads/images').'/'.$fileName);
             
             // for save thumnail image
             //$ImageUpload->resize(250,170);
-            $ImageUpload->resize(250,null,function($constraint) {
-                $constraint->aspectRatio(); # auto width according to aspect ratio
+            $ImageUpload->resize(125,null,function($constraint) {
+                $constraint->aspectRatio(); # auto height according to aspect ratio
             });
             $ImageUpload = $ImageUpload->save(public_path('uploads/images/thumbs').'/'.$fileName);
             
-            $image = new Image;
-            $image->filename = $fileName;
-            $image->user_id = Auth()->user()->id;
-            $image->save();
-            
-            $image = Image::latest()->first(['filename']);
+            //$image = Image::latest()->first(['filename']);
             return Response()->json($image);
         }
     }
