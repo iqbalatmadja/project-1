@@ -33,8 +33,10 @@
 										<img id="original" src="" class=" z-depth-1-half avatar-pic" alt="">
 										<div class="d-flex justify-content-center mt-3">
     										<div class="btn btn-mdb-color btn-rounded float-left">
-    											<input type="file" name="photo_name" id="photo_name" required=""> <br>
-    												<button type="submit" class="btn btn-secondary d-flex justify-content-center mt-3">submit</button>
+    											<input type="file" name="photo_name" id="photo_name" required="" onchange="readURL(this);" accept=".png, .jpg, .jpeg"> <br>
+												<button type="submit" class="btn btn-secondary d-flex justify-content-center mt-3">submit</button>
+        										<img id="preview" src="https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png" class="" width="200" height="150"/>
+												
     										</div>
 										</div>
 									</div>
@@ -110,6 +112,19 @@ $.ajaxSetup({
 	});
 })(jQuery);
 
+function readURL(input, id) {
+	id = id || '#preview';
+    if (input.files[0]) {
+	    var reader = new FileReader();
+		reader.onload = function (e) {
+            $(id)
+			.attr('src', e.target.result)
+            .width(200)
+            .height(150);
+		};
+		reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endpush
