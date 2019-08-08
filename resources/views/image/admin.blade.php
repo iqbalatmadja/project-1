@@ -39,27 +39,13 @@
     				</div>
     			</div>
     			<div class="row" style="margin-bottom: 10px;">
-    				
-				    <div class="col-md-12">	
+    				<div class="col-md-12">	
 						<form id="imageUploadForm" action="javascript:void(0)" enctype="multipart/form-data">
-							<div class="file-field">
-								<div class="row">
-									<div class=" col-md-8 mb-4">
-										<img id="original" src="" class=" z-depth-1-half avatar-pic" alt="">
-										<div class="d-flex justify-content-center mt-3">
-    										<div class="btn btn-mdb-color btn-rounded float-left">
-    											<input type="file" name="photo_name" id="photo_name" required="" onchange="readURL(this);" accept=".png, .jpg, .jpeg"> <br>
-												<button type="submit" class="btn btn-secondary d-flex justify-content-center mt-3">submit</button>
-        										<img id="preview" src="https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png" class="" width="200" height="150"/>
-												
-    										</div>
-										</div>
-									</div>
-									<div class=" col-md-4 mb-4">
-										<img id="thumbImg" src="" class=" z-depth-1-half thumb-pic" alt="">
-									</div>
-								</div>
+							<div class="btn">
+								<input type="file" name="photo_name" id="photo_name" required="" onchange="readURL(this);" accept=".png, .jpg, .jpeg"> <br>
+								<button type="submit" class="btn btn-secondary d-flex justify-content-center mt-3">submit</button>
 							</div>
+							<img id="preview" src="https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png" class="" width="200" height="150"/>
 						</form>
 					
 					</div>
@@ -112,6 +98,9 @@ $('#imageUploadForm').on('submit',(function(e) {
 		contentType: false,
 		processData: false,
 		success:function(data){
+			$("#photo_name").val("");
+			$("#preview").attr("src","https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png");
+			
 			var url1 = '{{ url("uploads/images/") }}/'+data.filename;
 			var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
 			$("#image_block").append('<div class="col-md-3">'+
