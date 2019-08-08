@@ -18,47 +18,29 @@
                 </div>
                 <div class="row" style="margin-bottom: 10px;">
 				    <div class="col-md-12">	
-				    	<span style="float: left;">
+				    	<span style="">
 	        				<h3>Image Management</h3>
 				    	</span>
     				</div>
     			</div>	
     			<div class="row" style="margin-bottom: 10px;">
     				<div class="col-md-12">
-    					<div id="">
-    					
-<div class="container">
-
-  <hr class="mt-2 mb-5">
-
-  <div class="row text-center text-lg-left" id="image-block">
-	<?php 
-	for($i=0;$i<=5;$i++){
-    ?>
-    <div class="col-lg-3 col-md-4 col-6">
-      <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
-          </a>
-    </div>
-    
-    <?php 
-	}
-	?>
-    
-    
-  </div>
-
-</div>
-<!-- /.container -->
-    					
-    					
-    					
-    					
-    					</div>
+						<div class="row" id="image_block">
+							<?php for($i=1;$i<=5;$i++){?>
+							<div class="col-md-3">
+                                <div class="card">
+                                    <a class="" href="https://dummyimage.com/600x400/000/fff" data-lightbox="example-set">
+                                    <img src="https://dummyimage.com/600x400/000/fff" alt="Park" class="card-img-top">
+                                    </a>
+                                </div>
+                            </div>
+                            <?php }?>
+						</div>
     				</div>
+    			</div>
+    			<div class="row" style="margin-bottom: 10px;">
+    				
 				    <div class="col-md-12">	
-						
-						
 						<form id="imageUploadForm" action="javascript:void(0)" enctype="multipart/form-data">
 							<div class="file-field">
 								<div class="row">
@@ -97,9 +79,16 @@
 @endsection
 
 @push('styles')
+<link href="{{ asset('libs/lightbox2/dist/css/lightbox.min.css') }}" rel="stylesheet">
+
+<style>
+
+</style>
 @endpush
 
 @push('bottom_scripts')
+<script src="{{ asset('libs/lightbox2/dist/js/lightbox.min.js') }}"></script>
+
 <script>
 $('body').on('hidden.bs.modal', '.modal', function (event) {
     //$(".modal-content").html(""); //clearing it first, if necessary
@@ -112,41 +101,32 @@ $.ajaxSetup({
     }
 });
 
-(function($) {
-	'use strict';
-	$(function() {
-		$(document).ready(function(){		
-			$('#imageUploadForm').on('submit',(function(e) {
-				e.preventDefault();
-				var formData = new FormData(this);
-				$.ajax({
-					type:'POST',
-					url: "{{ route('imageSave')}}",
-					data:formData,
-					cache:false,
-					contentType: false,
-					processData: false,
-					success:function(data){
-						var url1 = '{{ url("uploads/images/") }}/'+data.filename;
-						var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
-						$("#image-block").append('<div class="col-lg-3 col-md-4 col-6">'+
-						'<a href="#" class="d-block mb-4 h-100">'+
-						'<img class="img-fluid img-thumbnail" src="'+url2+'" alt="">'+
-						'</a>'+
-						'</div>');
-					},
-					error: function(data){
-					    console.log(data);
-					}
-				});
-			}));
-        	
-		}); //end $(document).ready(function(){
-
-				
-		
+$('#imageUploadForm').on('submit',(function(e) {
+	e.preventDefault();
+	var formData = new FormData(this);
+	$.ajax({
+		type:'POST',
+		url: "{{ route('imageSave')}}",
+		data:formData,
+		cache:false,
+		contentType: false,
+		processData: false,
+		success:function(data){
+			var url1 = '{{ url("uploads/images/") }}/'+data.filename;
+			var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
+			$("#image_block").append('<div class="col-md-3">'+
+                    '<div class="card">'+
+                    '<a class="" href="'+url1+'" data-lightbox="example-set">'+
+                    '<img src="'+url2+'" alt="Park" class="card-img-top">'+
+                    '</a>'+
+                '</div>'+
+            '</div>');
+		},
+		error: function(data){
+		    console.log(data);
+		}
 	});
-})(jQuery);
+}));
 
 function readURL(input, id) {
 	id = id || '#preview';
