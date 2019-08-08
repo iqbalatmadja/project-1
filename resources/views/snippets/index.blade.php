@@ -16,7 +16,7 @@
                             <div class="row">
                                 <div class="col-12">
 									<ul>
-										<li><a href="{{ route('snippetsDropzone') }}">Dropzone</a></li>
+										<li><a href="{{ route('snippetsUpload1') }}">Upload1 (Intervention + Ajax)</a></li>
 									</ul>
                                 </div>
                             </div>

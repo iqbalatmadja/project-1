@@ -54,7 +54,8 @@ Route::post('/image/delete','ImageController@delete')->name('imageDelete')->midd
 
 #Snippets
 Route::get('/snippets','SnippetsController@index')->name('snippets')-> middleware(['setTheme:'.$theme])->middleware('auth');
-Route::get('/snippets/dropzone','SnippetsController@dropzone')->name('snippetsDropzone')-> middleware(['setTheme:'.$theme])->middleware('auth');
+Route::get('/snippets/upload1','SnippetsController@upload1')->name('snippetsUpload1')-> middleware(['setTheme:'.$theme])->middleware('auth');
+Route::post('/snippets/upload1save','SnippetsController@upload1Save')->name('upload1Save')->middleware(['setTheme:'.$theme])->middleware('auth');
 
 
 
