@@ -128,7 +128,7 @@ $(document).ready(function(){
 				'<a class="" href="'+url1+'" data-lightbox="image-set">'+
 				'<img src="'+url2+'" alt="" class=""></a></div>';
 				var $content = $(item2append)
-				$grid.append( $content ).isotope( 'appended', $content )		    
+				$grid.append( $content ).isotope( 'appended', $content ).isotope('layout')		    
 				
 			},
 			error: function(data){
