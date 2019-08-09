@@ -47,7 +47,7 @@
     				<div class="col-md-12">	
 						<form id="imageUploadForm" action="javascript:void(0)" enctype="multipart/form-data">
 							<div class="btn">
-								<input type="file" name="photo_name" id="photo_name" required="" onchange="readURL(this);" accept=".png, .jpg, .jpeg"> <br>
+								<input type="file" name="file_name" id="file_name" required="" onchange="readURL(this);" accept=".png, .jpg, .jpeg"> <br>
 								<button type="submit" class="btn btn-secondary d-flex justify-content-center mt-3">submit</button>
 							</div>
 							<img id="preview" src="https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png" class="" width="200" height="150"/>
@@ -119,7 +119,7 @@ $(document).ready(function(){
 			contentType: false,
 			processData: false,
 			success:function(data){
-				$("#photo_name").val("");
+				$("#file_name").val("");
 				$("#preview").attr("src","https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png");
 				
 				var url1 = '{{ url("uploads/images/") }}/'+data.filename;
@@ -132,7 +132,17 @@ $(document).ready(function(){
 				
 			},
 			error: function(data){
-			    console.log(data);
+				console.log('FAILED!');
+				var responses = JSON.parse(data.responseText);
+				if(Array.isArray(responses.errors.file_name)){
+					var xs  = responses.errors.file_name;
+					xs.forEach(function (x){
+						alert(x);
+				    });
+				}
+				$("#file_name").val("");
+				$("#preview").attr("src","https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png");
+				
 			}
 		});
 	}));
