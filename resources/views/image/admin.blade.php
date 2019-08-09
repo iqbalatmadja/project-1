@@ -50,7 +50,7 @@
 								<input type="file" name="file_name" id="file_name" required="" onchange="readURL(this);" accept=".png, .jpg, .jpeg"> <br>
 								<button type="submit" class="btn btn-secondary d-flex justify-content-center mt-3">submit</button>
 							</div>
-							<img id="preview" src="https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png" class="" width="200" height="150"/>
+							<img id="preview" src="{{ url('images/no-image-tut.png') }}" class="" width="200" height="150"/>
 						</form>
 					
 					</div>
@@ -120,7 +120,7 @@ $(document).ready(function(){
 			processData: false,
 			success:function(data){
 				$("#file_name").val("");
-				$("#preview").attr("src","https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png");
+				$("#preview").attr("src","{{ url('images/no-image-tut.png') }}");
 				
 				var url1 = '{{ url("uploads/images/") }}/'+data.filename;
 				var url2 = '{{ url("uploads/images/thumbs/") }}/'+data.filename;
@@ -141,7 +141,7 @@ $(document).ready(function(){
 				    });
 				}
 				$("#file_name").val("");
-				$("#preview").attr("src","https://www.tutsmake.com/wp-content/uploads/2019/01/no-image-tut.png");
+				$("#preview").attr("src","{{ url('images/no-image-tut.png') }}");
 				
 			}
 		});
