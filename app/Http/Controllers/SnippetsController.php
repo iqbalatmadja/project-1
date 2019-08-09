@@ -49,8 +49,10 @@ class SnippetsController extends Controller
             $image = Image::latest()->first(['filename']);
             return Response()->json($image);
         }
-        
-        
-        
+    }
+    
+    public function ckeditor()
+    {
+        return view('snippets.ckeditor');
     }
 }

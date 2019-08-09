@@ -35,11 +35,6 @@ class TestController extends Controller
         return view('test.echarts');
     }
 
-    public function ckeditor()
-    {
-        return view('test.ckeditor');
-    }
-
     public function ajax1()
     {
         return response()->json([

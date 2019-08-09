@@ -5,10 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">CKEditor <a href="{{ route('snippets') }}">BACK</a></div>
 
                 <div class="card-body">
-                    <p>CKEDITOR</p>
                     <form action="{{ route('profile.update') }}" method="POST" role="form" enctype="multipart/form-data">
                         @csrf
                         <div id="editor">
