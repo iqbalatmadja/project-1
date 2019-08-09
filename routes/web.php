@@ -30,7 +30,6 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middle
 // Tests
 Route::get('/test','TestController@index')->name('test')->middleware(['setTheme:'.$theme]);
 Route::get('/test/datepickers','TestController@datepickers')->name('datepickers')->middleware(['setTheme:'.$theme]);
-Route::get('/test/echarts','TestController@echarts')->name('echarts')->middleware(['setTheme:'.$theme]);
 Route::get('/test/ajax1','TestController@ajax1')->name('ajax1')->middleware(['setTheme:'.$theme]);
 
 # undone 
@@ -56,6 +55,7 @@ Route::get('/snippets','SnippetsController@index')->name('snippets')-> middlewar
 Route::get('/snippets/upload1','SnippetsController@upload1')->name('snippetsUpload1')-> middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/snippets/upload1save','SnippetsController@upload1Save')->name('upload1Save')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::get('/snippets/ckeditor','SnippetsController@ckeditor')->name('snippetsCkeditor')-> middleware(['setTheme:'.$theme])->middleware('auth');
+Route::get('/snippets/echarts','SnippetsController@echarts')->name('snippetsEcharts')->middleware(['setTheme:'.$theme]);
 
 
 

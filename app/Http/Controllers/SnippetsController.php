@@ -55,4 +55,10 @@ class SnippetsController extends Controller
     {
         return view('snippets.ckeditor');
     }
+    
+    public function echarts()
+    {
+        return view('snippets.echarts');
+    }
+    
 }

@@ -18,6 +18,7 @@
 									<ul>
 										<li><a href="{{ route('snippetsUpload1') }}">Upload1 (Intervention + Ajax)</a></li>
 										<li><a href="{{ route('snippetsCkeditor') }}">CKEditor</a></li>
+										<li><a href="{{ route('snippetsEcharts') }}">Echarts</a></li>
 									</ul>
                                 </div>
                             </div>

@@ -5,10 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">ECharts <a href="{{ route('snippets') }}">BACK</a></div>
 
                 <div class="card-body">
-                    <p>ECHARTS</p>
                     <h3>Chart Sample 1</h3>
                     <div id="chart1" style="width:600px; height:400px;"></div>
                     <h3>Chart Sample 2</h3>

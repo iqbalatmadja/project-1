@@ -30,11 +30,6 @@ class TestController extends Controller
         return view('test.datepickers');
     }
 
-    public function echarts()
-    {
-        return view('test.echarts');
-    }
-
     public function ajax1()
     {
         return response()->json([
