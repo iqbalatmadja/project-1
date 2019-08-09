@@ -132,7 +132,7 @@ $(document).ready(function(){
 				
 			},
 			error: function(data){
-				console.log('FAILED!');
+				console.log(data);
 				var responses = JSON.parse(data.responseText);
 				if(Array.isArray(responses.errors.file_name)){
 					var xs  = responses.errors.file_name;
