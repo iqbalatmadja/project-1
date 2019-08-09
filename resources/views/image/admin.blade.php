@@ -87,6 +87,7 @@ var $grid = $('.grid').imagesLoaded( function() {
 	// init Isotope after all images have loaded
 	$grid.isotope({
 		itemSelector: '.grid-item',
+		layoutMode: 'masonry'
 	});
 });
 
