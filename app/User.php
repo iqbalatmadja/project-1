@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public static function getImages($userId)
+    {
+        $images = \App\Image::where(['user_id'=>$userId])->get();
+        return $images;
+    }
 }

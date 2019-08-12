@@ -15,7 +15,7 @@ class ImageController extends Controller
 
     public function admin(Request $request)
     {
-        $images = \App\Image::where("user_id",Auth()->user()->id)->get();
+        $images = \App\User::getImages(Auth()->user()->id);
         $data = ['images'=>$images];
         return view('image.admin',$data);
     }
