@@ -23,11 +23,11 @@ class ImageController extends Controller
     public function save(Request $request)
     {
         request()->validate([
-            //'file_name' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:300',
-            'file_name' => 'required|image|mimes:svg|max:300',
+            'file_name' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+            //'file_name' => 'required|image|mimes:svg|max:300',
         ]);
         
-        if ($files = $request->file('photo_name')) {
+        if ($files = $request->file('file_name')) {
             $userId = Auth()->user()->id;
             
             $image = new Image;
