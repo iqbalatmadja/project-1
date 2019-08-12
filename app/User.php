@@ -37,9 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    public static function getImages($userId)
+    public function images()
     {
-        $images = \App\Image::where(['user_id'=>$userId])->get();
-        return $images;
+        return $this->hasMany('App\Image','user_id','id');
     }
+    
+
 }

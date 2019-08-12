@@ -14,5 +14,8 @@ class Image extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     
-    
+    public function user()
+    {
+        return $this->belongsTo('App\User','user_id','id');
+    }
 }

@@ -31,11 +31,13 @@
 							foreach($images as $i){
 							    $originalImage = url('uploads/images/'.$i->filename);
 							    $thumbImage = url('uploads/images/thumbs/'.$i->filename);
+							    $owner = $i->user->name;
 						    ?>
 						    	<div class="grid-item">
                                     <a class="" href="{{ $originalImage }}" data-lightbox="image-set" data-title="{{ $originalImage }}">
                                     <img src="{{ $thumbImage }}" alt="" class="">
                                     </a>
+                                    <div>{{ $owner }}</div>
                                 </div>
                             <?php }?>
 							
