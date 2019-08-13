@@ -55,10 +55,33 @@ Route::get('/snippets','SnippetsController@index')->name('snippets')-> middlewar
 Route::get('/snippets/upload1','SnippetsController@upload1')->name('snippetsUpload1')-> middleware(['setTheme:'.$theme])->middleware('auth');
 Route::post('/snippets/upload1save','SnippetsController@upload1Save')->name('upload1Save')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::get('/snippets/ckeditor','SnippetsController@ckeditor')->name('snippetsCkeditor')-> middleware(['setTheme:'.$theme])->middleware('auth');
+
 Route::get('/snippets/echarts','SnippetsController@echarts')->name('snippetsEcharts')->middleware(['setTheme:'.$theme]);
 Route::get('/snippets/captcha','SnippetsController@captcha')->name('snippetsCaptcha')->middleware(['setTheme:'.$theme]);
 Route::get('/snippets/process-captcha','SnippetsController@processCaptcha')->name('snippetsProcessCaptcha')->middleware(['setTheme:'.$theme]);
-
+Route::any('captcha-test', function() {
+    if (request()->getMethod() == 'POST') {
+        $rules = [
+            'captcha' => 'required|captcha'
+            
+        ];
+        $validator = validator()->make(request()->all(), $rules);
+        if ($validator->fails()) {
+            echo '<p style="color: #ff0000;">Incorrect!</p>';
+        } else {
+            echo '<p style="color: #00ff30;">Matched :)</p>';
+        }
+    }
+    
+    $form = "<h2>Captcha - not using view</h2><a href='/snippets'>BACK</a>";
+    $form .= '<form method="post" action="captcha-test">';
+    $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
+    $form .= '<p>' . captcha_img() . '</p>';
+    $form .= '<p><input type="text" name="captcha"></p>';
+    $form .= '<p><button type="submit" name="check">Check</button></p>';
+    $form .= '</form>';
+    return $form;
+});
 
 
 

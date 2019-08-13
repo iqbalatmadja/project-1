@@ -19,7 +19,7 @@
 										<li><a href="{{ route('snippetsUpload1') }}">Upload1 (Intervention + Ajax)</a></li>
 										<li><a href="{{ route('snippetsCkeditor') }}">CKEditor</a></li>
 										<li><a href="{{ route('snippetsEcharts') }}">Echarts</a></li>
-										<li><a href="{{ route('snippetsCaptcha') }}">Captcha</a></li>
+										<li><a href="{{ url('captcha-test') }}">Captcha without view</a></li>
 									</ul>
                                 </div>
                             </div>
