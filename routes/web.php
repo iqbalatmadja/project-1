@@ -56,6 +56,8 @@ Route::get('/snippets/upload1','SnippetsController@upload1')->name('snippetsUplo
 Route::post('/snippets/upload1save','SnippetsController@upload1Save')->name('upload1Save')->middleware(['setTheme:'.$theme])->middleware('auth');
 Route::get('/snippets/ckeditor','SnippetsController@ckeditor')->name('snippetsCkeditor')-> middleware(['setTheme:'.$theme])->middleware('auth');
 Route::get('/snippets/echarts','SnippetsController@echarts')->name('snippetsEcharts')->middleware(['setTheme:'.$theme]);
+Route::get('/snippets/captcha','SnippetsController@captcha')->name('snippetsCaptcha')->middleware(['setTheme:'.$theme]);
+Route::get('/snippets/process-captcha','SnippetsController@processCaptcha')->name('snippetsProcessCaptcha')->middleware(['setTheme:'.$theme]);
 
 
 

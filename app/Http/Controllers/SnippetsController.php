@@ -61,4 +61,15 @@ class SnippetsController extends Controller
         return view('snippets.echarts');
     }
     
+    public function captcha()
+    {
+        return view('snippets.captcha');
+    }
+    
+    public function processCaptcha()
+    {
+        
+    }
+    
+    
 }
