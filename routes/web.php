@@ -57,8 +57,7 @@ Route::post('/snippets/upload1save','SnippetsController@upload1Save')->name('upl
 Route::get('/snippets/ckeditor','SnippetsController@ckeditor')->name('snippetsCkeditor')-> middleware(['setTheme:'.$theme])->middleware('auth');
 
 Route::get('/snippets/echarts','SnippetsController@echarts')->name('snippetsEcharts')->middleware(['setTheme:'.$theme]);
-Route::get('/snippets/captcha','SnippetsController@captcha')->name('snippetsCaptcha')->middleware(['setTheme:'.$theme]);
-Route::get('/snippets/process-captcha','SnippetsController@processCaptcha')->name('snippetsProcessCaptcha')->middleware(['setTheme:'.$theme]);
+
 Route::any('captcha-test', function() {
     if (request()->getMethod() == 'POST') {
         $rules = [
@@ -82,6 +81,9 @@ Route::any('captcha-test', function() {
     $form .= '</form>';
     return $form;
 });
+
+Route::get('/snippets/captcha','SnippetsController@captcha')->name('snippetsCaptcha')->middleware(['setTheme:'.$theme]);
+Route::get('/snippets/process-captcha','SnippetsController@processCaptcha')->name('snippetsProcessCaptcha')->middleware(['setTheme:'.$theme]);
 
 
 
