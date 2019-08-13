@@ -75,7 +75,7 @@ Route::any('captcha-test', function() {
     $form = "<h2>Captcha - not using view</h2><a href='/snippets'>BACK</a>";
     $form .= '<form method="post" action="captcha-test">';
     $form .= '<input type="hidden" name="_token" value="' . csrf_token() . '">';
-    $form .= '<p>' . captcha_img() . '</p>';
+    $form .= '<p>' . captcha_img("flat") . '</p>';
     $form .= '<p><input type="text" name="captcha"></p>';
     $form .= '<p><button type="submit" name="check">Check</button></p>';
     $form .= '</form>';
@@ -83,7 +83,7 @@ Route::any('captcha-test', function() {
 });
 
 Route::get('/snippets/captcha','SnippetsController@captcha')->name('snippetsCaptcha')->middleware(['setTheme:'.$theme]);
-Route::get('/snippets/process-captcha','SnippetsController@processCaptcha')->name('snippetsProcessCaptcha')->middleware(['setTheme:'.$theme]);
+Route::post('/snippets/process-captcha','SnippetsController@processCaptcha')->name('snippetsProcessCaptcha')->middleware(['setTheme:'.$theme]);
 
 
 

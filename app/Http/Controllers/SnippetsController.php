@@ -66,8 +66,13 @@ class SnippetsController extends Controller
         return view('snippets.captcha');
     }
     
-    public function processCaptcha()
-    {
+    public function processCaptcha(Request $request)
+    {   
+        $request->validate([
+            'captcha' => 'required|captcha'
+        ]);
+        
+        echo 'CAPTCHA PASSED!!!';
         
     }
     
