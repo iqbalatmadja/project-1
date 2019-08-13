@@ -19,7 +19,8 @@
                   	@endif
                     <form method="post" action="{{ route('snippetsProcessCaptcha') }}">
                     @csrf
-                    <p>{{ captcha_img("flat") }}</p>
+                    <div id="c">{!! captcha_img("flat") !!}</div>
+                    <p><a href="#" id="refresh">REFRESH</a></p>
                     <p><input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha"></p>
                     <p><button type="submit" name="check">Check</button></p>
                     </form>                
@@ -38,5 +39,16 @@
 @endpush
 
 @push('bottom_scripts')
-
+<script>
+$("#refresh").click(function(e){
+	e.preventDefault();
+	$.ajax({
+	     type:'GET',
+	     url:'{{ route("snippetsRefreshCaptcha") }}',
+	     success:function(data){
+		     $("#c").html(data);
+	     }
+	  });	
+})
+</script>
 @endpush

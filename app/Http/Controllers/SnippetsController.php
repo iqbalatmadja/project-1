@@ -76,5 +76,11 @@ class SnippetsController extends Controller
         
     }
     
+    public function refreshCaptcha()
+    {
+        $x = captcha_img("flat");
+        return response($x, 200)->header('Content-Type', 'text/plain');
+    }
+    
     
 }
