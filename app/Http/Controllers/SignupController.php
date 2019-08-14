@@ -19,7 +19,8 @@ class SignupController extends Controller
             'name' => 'required|string|max:50',
             'email' => 'required|email|max:100|unique:users,email',
             'password' => 'required|min:6',
-            'password_confirmation' => 'required|same:password'
+            'password_confirmation' => 'required|same:password',
+            'captcha' => 'required|captcha'
         ]);
         error_log("PASS");
         $user = User::create([
