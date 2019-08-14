@@ -86,5 +86,8 @@ Route::get('/snippets/captcha','SnippetsController@captcha')->name('snippetsCapt
 Route::post('/snippets/process-captcha','SnippetsController@processCaptcha')->name('snippetsProcessCaptcha')->middleware(['setTheme:'.$theme]);
 Route::get('/snippets/refresh-captcha','SnippetsController@refreshCaptcha')->name('snippetsRefreshCaptcha')->middleware(['setTheme:'.$theme]);
 
+# custom registration
+Route::get('/signup','SignupController@index')->name('formSignup')-> middleware(['setTheme:'.$theme]);
+Route::post('/processing-signup','SignupController@processing')->name('processingSignup')-> middleware(['setTheme:'.$theme]);
 
 
