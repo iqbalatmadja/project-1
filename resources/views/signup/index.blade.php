@@ -57,6 +57,16 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('Captcha Challenge') }}</label>
+                            <div class="col-md-6">
+                            	<div id="c">{!! captcha_img("flat") !!}</div>
+                            	<div><a href="#" id="refresh">REFRESH</a></div>
+                                <input id="captcha" type="text" class="form-control" name="captcha">
+                            </div>
+                        </div>
+                        
+                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -82,6 +92,16 @@
 @push('bottom_scripts')
 <script src="{{ asset('libs/BootstrapDetector.js') }}" ></script>
 <script>
+$("#refresh").click(function(e){
+	e.preventDefault();
+	$.ajax({
+	     type:'GET',
+	     url:'{{ route("snippetsRefreshCaptcha") }}',
+	     success:function(data){
+		     $("#c").html(data);
+	     }
+	  });	
+})
 </script>
 
 @endpush
