@@ -22,6 +22,9 @@
                     <div>
                     {{ trans("messages.trythis") }}
                     </div>
+                    <div>
+                    <i class="mdi mdi-car-brake-parking"></i>
+                    </div>
 					
                 </div>
             </div>

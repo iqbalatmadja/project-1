@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('libs/mdi/css/materialdesignicons.min.css') }}">
 
     <!-- including jquery 3.4.7 and bootstrap 4 -->
     <script src="{{ asset('libs/jquery-3.4.1.min.js') }}" ></script>
