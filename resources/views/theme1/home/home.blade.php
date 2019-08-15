@@ -19,7 +19,10 @@
                     @else
                         You are not logged in
                     @endif
-
+                    <div>
+                    {{ trans("messages.trythis") }}
+                    </div>
+					
                 </div>
             </div>
         </div>
